@@ -440,7 +440,7 @@ export default function ChatPanel() {
     <div className="flex min-h-screen flex-col bg-[var(--bg-primary)] transition-colors duration-300">
       <ChatHeader />
 
-      <main className="mx-auto flex w-full max-w-full lg:max-w-4xl flex-1 flex-col px-2 sm:px-4 pb-24 pt-6 sm:pt-8">
+      <main className="mx-auto flex w-full max-w-full lg:max-w-4xl flex-1 flex-col px-1 sm:px-4 pb-24 pt-6 sm:pt-8">
         <Conversation
           contextRef={conversationContextRef}
           className="flex flex-1 flex-col"
