@@ -15,15 +15,6 @@ import Image from "next/image";
 import { formatFileSize } from "../../lib/utils";
 import type { ChatAttachment } from "../../lib/chat/types";
 
-const PLACEHOLDERS = [
-  "Research AI's ethical role in creative writing",
-  "Alternate history: Dinosaurs with humans",
-  "Quantum phenomena for time-travel tech",
-  "Mythology-superhero board game design",
-  "Memes' impact on cultural evolution",
-  "Steampunk Industrial Revolution reimagined",
-];
-
 type AIChatInputProps = {
   value: string;
   onValueChange: (value: string) => void;
@@ -61,40 +52,6 @@ const containerVariants = {
   },
 } satisfies Variants;
 
-const placeholderContainerVariants = {
-  initial: {},
-  animate: { transition: { staggerChildren: 0.025 } },
-  exit: { transition: { staggerChildren: 0.015, staggerDirection: -1 } },
-} satisfies Variants;
-
-const letterVariants = {
-  initial: {
-    opacity: 0,
-    filter: "blur(12px)",
-    y: 10,
-  },
-  animate: {
-    opacity: 1,
-    filter: "blur(0px)",
-    y: 0,
-    transition: {
-      opacity: { duration: 0.25 },
-      filter: { duration: 0.4 },
-      y: { type: "spring" as const, stiffness: 80, damping: 20 },
-    },
-  },
-  exit: {
-    opacity: 0,
-    filter: "blur(12px)",
-    y: -10,
-    transition: {
-      opacity: { duration: 0.2 },
-      filter: { duration: 0.3 },
-      y: { type: "spring" as const, stiffness: 80, damping: 20 },
-    },
-  },
-} satisfies Variants;
-
 const defaultDeepSearchState = (value?: boolean) => value ?? false;
 
 const AIChatInput = ({
@@ -112,8 +69,6 @@ const AIChatInput = ({
   attachmentError,
   className,
 }: AIChatInputProps) => {
-  const [placeholderIndex, setPlaceholderIndex] = useState(0);
-  const [showPlaceholder, setShowPlaceholder] = useState(true);
   const [isActive, setIsActive] = useState(false);
   const [deepSearchActive, setDeepSearchActive] = useState(
     defaultDeepSearchState(deepSearchEnabled),
@@ -126,21 +81,6 @@ const AIChatInput = ({
   useEffect(() => {
     setDeepSearchActive(defaultDeepSearchState(deepSearchEnabled));
   }, [deepSearchEnabled]);
-
-  // Cycle placeholder text when input is inactive
-  useEffect(() => {
-    if (isActive || value || attachmentCount > 0) return;
-
-    const interval = setInterval(() => {
-      setShowPlaceholder(false);
-      setTimeout(() => {
-        setPlaceholderIndex((prev) => (prev + 1) % PLACEHOLDERS.length);
-        setShowPlaceholder(true);
-      }, 400);
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [isActive, value, attachmentCount]);
 
   // Close input when clicking outside
   useEffect(() => {
@@ -219,8 +159,7 @@ const AIChatInput = ({
   };
 
   const hasAttachments = attachmentCount > 0;
-  const placeholderShouldRender =
-    showPlaceholder && !isActive && !value && !hasAttachments;
+  const showPlaceholder = !value && !hasAttachments;
 
   return (
     <div
@@ -328,41 +267,10 @@ const AIChatInput = ({
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
                 className="flex-1 border-0 outline-0 rounded-md py-2 text-base bg-transparent w-full font-normal text-[var(--text-primary)] placeholder:text-[var(--text-secondary)]"
-                style={{ position: "relative", zIndex: 1 }}
                 onFocus={handleActivate}
-                placeholder=""
+                placeholder={showPlaceholder ? "Message Yurie" : ""}
                 disabled={isStreaming && !onStop}
               />
-              <div className="absolute left-0 top-0 w-full h-full pointer-events-none flex items-center px-3 py-2">
-                <AnimatePresence mode="wait">
-                  {placeholderShouldRender && (
-                    <motion.span
-                      key={placeholderIndex}
-                      className="absolute left-0 top-1/2 -translate-y-1/2 text-[var(--text-primary)]/90 select-none pointer-events-none"
-                      style={{
-                        whiteSpace: "nowrap",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        zIndex: 0,
-                      }}
-                      variants={placeholderContainerVariants}
-                      initial="initial"
-                      animate="animate"
-                      exit="exit"
-                    >
-                      {PLACEHOLDERS[placeholderIndex].split("").map((char, i) => (
-                        <motion.span
-                          key={i}
-                          variants={letterVariants}
-                          style={{ display: "inline-block" }}
-                        >
-                          {char === " " ? "\u00A0" : char}
-                        </motion.span>
-                      ))}
-                    </motion.span>
-                  )}
-                </AnimatePresence>
-              </div>
             </div>
 
             <motion.button
