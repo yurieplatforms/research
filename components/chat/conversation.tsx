@@ -44,7 +44,7 @@ export function ConversationContent({
   return (
     <StickToBottom.Content
       className={cn(
-        "mx-auto flex w-full max-w-4xl flex-col px-4 sm:px-6",
+        "mx-auto flex w-full max-w-full md:max-w-4xl flex-col px-2 sm:px-6",
         className,
       )}
       {...props}
