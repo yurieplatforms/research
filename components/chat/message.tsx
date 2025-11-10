@@ -45,7 +45,7 @@ export function Message({
         className={cn(
           "flex items-start",
           isAssistant
-            ? "w-full gap-3.5 sm:gap-4"
+            ? "w-full gap-2 sm:gap-3.5 md:gap-4"
             : "ml-auto w-auto flex-row-reverse gap-0",
         )}
       >
