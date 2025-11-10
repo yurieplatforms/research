@@ -440,7 +440,7 @@ export default function ChatPanel() {
     <div className="flex min-h-screen flex-col bg-[var(--bg-primary)] transition-colors duration-300">
       <ChatHeader />
 
-      <main className="mx-auto flex w-full max-w-full md:max-w-4xl flex-1 flex-col px-2 sm:px-4 pb-24 pt-6 sm:pt-8">
+      <main className="mx-auto flex w-full max-w-full lg:max-w-4xl flex-1 flex-col px-2 sm:px-4 pb-24 pt-6 sm:pt-8">
         <Conversation
           contextRef={conversationContextRef}
           className="flex flex-1 flex-col"
@@ -539,7 +539,7 @@ export default function ChatPanel() {
       </main>
 
       <div className="fixed bottom-0 left-0 right-0 z-20 bg-gradient-to-t from-[var(--bg-primary)] to-[var(--bg-primary)]/95 backdrop-blur-xl">
-        <div className="mx-auto w-full max-w-full md:max-w-4xl px-2 sm:px-4 pb-5 pt-4 sm:pb-6 sm:pt-5">
+        <div className="mx-auto w-full max-w-4xl px-4 pb-5 pt-4 sm:pb-6 sm:pt-5">
           <form onSubmit={handleSubmit} className="relative space-y-2.5">
             <AIChatInput
               className="w-full"
