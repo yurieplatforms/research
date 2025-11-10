@@ -11,8 +11,17 @@ import {
   useState,
 } from "react";
 import { Lightbulb, ChevronDown } from "lucide-react";
-import { Streamdown } from "streamdown";
+import dynamic from "next/dynamic";
+import type { StreamdownProps } from "streamdown";
 import { cn } from "../../lib/utils";
+
+const Streamdown = dynamic(
+  () => import("streamdown").then((mod) => mod.Streamdown),
+  {
+    ssr: false,
+    loading: () => null,
+  },
+);
 
 type ReasoningContextValue = {
   isStreaming: boolean;
