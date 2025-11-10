@@ -60,26 +60,26 @@ import {
 const SUGGESTION_PROMPTS: SuggestionPrompt[] = [
   {
     icon: SearchIcon,
-    label: "Research",
-    prompt: "Craft a whimsical yet rigorous research proposal exploring how gamification in education could revolutionize learning outcomes while addressing cognitive biases in AI-driven personalized curricula.",
+    label: "Quick Scan",
+    prompt: "Summarize today's key breakthrough in quantum sensors in three bullets.",
     accent: "bg-sky-500/10 text-sky-200 border border-sky-500/20",
   },
   {
     icon: ScrollIcon,
-    label: "History",
-    prompt: "Dive into an alternate history scenario where the Library of Alexandria never burned, speculating on its profound effects on scientific progress, cultural exchanges, and the trajectory of human innovation across centuries.",
+    label: "Field Notes",
+    prompt: "Highlight two historical insights that still shape modern lab culture.",
     accent: "bg-amber-500/10 text-amber-200 border border-amber-500/20",
   },
   {
     icon: FlaskConicalIcon,
-    label: "Science",
-    prompt: "Unravel the enigmatic world of fractal geometry in nature, investigating how self-similar patterns in snowflakes and coastlines could inspire breakthroughs in chaos theory and predictive modeling for climate phenomena.",
+    label: "Data Angle",
+    prompt: "Suggest metrics to judge emerging open-source LLM benchmarks.",
     accent: "bg-emerald-500/10 text-emerald-200 border border-emerald-500/20",
   },
   {
     icon: ClapperboardIcon,
-    label: "Entertainment",
-    prompt: "Invent an elaborate escape room adventure that fuses elements of steampunk aesthetics, quantum puzzle mechanics, and interactive storytelling, complete with branching narratives and hidden Easter eggs for repeat players.",
+    label: "Pitch Deck",
+    prompt: "Draft a short podcast teaser on the future of AI ethics.",
     accent: "bg-fuchsia-500/10 text-fuchsia-200 border border-fuchsia-500/20",
   },
 ];
