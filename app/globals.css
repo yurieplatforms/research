@@ -1,0 +1,462 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@source "../node_modules/streamdown/dist/index.js";
+
+:root {
+  color-scheme: dark light;
+  --gradient-blue: #4285f4;
+  --gradient-purple: #9b72f2;
+  --gradient-pink: #f538a0;
+  --gemini-blue: #4285f4;
+  --gemini-purple: #a142f4;
+  --gemini-teal: #00d4aa;
+  --gemini-orange: #ff6f00;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #131314;
+    --bg-secondary: #1e1f20;
+    --bg-surface: #282a2c;
+    --bg-hover: #3c4043;
+    --text-primary: #e8eaed;
+    --text-secondary: #9aa0a6;
+    --text-tertiary: #5f6368;
+    --border-color: #3c4043;
+    --border-subtle: #292a2d;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-surface: #fafafa;
+    --bg-hover: #f1f3f4;
+    --text-primary: #1f1f1f;
+    --text-secondary: #5f6368;
+    --text-tertiary: #80868b;
+    --border-color: #e8eaed;
+    --border-subtle: #f1f3f4;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-inter), "Google Sans", "Segoe UI", Roboto, system-ui, -apple-system, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Subtle radial gradient for depth */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(66, 133, 244, 0.03),
+    transparent 50%
+  );
+  z-index: 0;
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  margin: 0 auto;
+  width: min(960px, 92vw);
+}
+
+/* Gemini-style gradient text */
+.gradient-text {
+  background: linear-gradient(90deg, var(--gradient-blue), var(--gradient-purple), var(--gradient-pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% auto;
+  animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+}
+
+/* Gemini sparkle animation */
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(0.98);
+  }
+}
+
+.animate-sparkle {
+  animation: sparkle 2.5s ease-in-out infinite;
+}
+
+/* Pulse animation for thinking state */
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Shimmer effect */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(66, 133, 244, 0.1) 50%,
+    transparent 100%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer-text {
+  0% {
+    background-position: 240% 0;
+  }
+  50% {
+    background-position: 0% 0;
+  }
+  100% {
+    background-position: -240% 0;
+  }
+}
+
+.thinking-shimmer {
+  display: inline-block;
+  background: linear-gradient(
+    120deg,
+    var(--text-secondary) 0%,
+    var(--text-secondary) 20%,
+    rgba(255, 255, 255, 0.75) 38%,
+    #ffffff 50%,
+    rgba(255, 255, 255, 0.75) 62%,
+    var(--text-primary) 80%,
+    var(--text-secondary) 100%
+  );
+  background-size: 320% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer-text 9.6s linear infinite;
+}
+
+/* Table separators */
+.prose table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.prose table tr + tr {
+  border-top: 1px solid #222222;
+}
+
+.prose table th,
+.prose table td {
+  border-bottom: 1px solid #222222;
+}
+
+.prose table tbody tr:last-child th,
+.prose table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar - Gemini style */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Slide up animation */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Scale in animation */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Remove all borders and outlines from code blocks */
+pre,
+.prose pre,
+article pre,
+pre code,
+.prose pre code,
+article pre code,
+pre *,
+.prose pre *,
+article pre * {
+  border: none !important;
+  border-width: 0 !important;
+  outline: none !important;
+  outline-width: 0 !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  ring: 0 !important;
+}
+
+/* Remove borders from code block wrapper divs */
+[class*="code"],
+[class*="Code"],
+div:has(> pre),
+.prose div:has(> pre) {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+
+/* Target Shiki/syntax highlighter styles */
+.shiki,
+.shiki pre,
+[data-language],
+[data-theme],
+.prose .shiki,
+.prose [data-language] {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+
+/* Universal code block border removal */
+* pre,
+* pre *,
+.prose * pre,
+.prose * pre * {
+  border-style: none !important;
+  border-color: transparent !important;
+  outline-style: none !important;
+  outline-color: transparent !important;
+}
+
+/* Final aggressive override for code block borders */
+pre[class],
+pre[class*="language"],
+pre[data-language],
+.prose pre[class],
+.prose pre[class*="language"],
+.prose pre[data-language] {
+  border: 0px solid transparent !important;
+  border-width: 0px !important;
+  outline: 0px solid transparent !important;
+  outline-width: 0px !important;
+  box-shadow: 0 0 0 0 transparent !important;
+}
+
+/* Enhanced Streamdown code block styling */
+[data-code-block-container] {
+  position: relative;
+  margin: 1.5rem 0;
+  border-radius: 16px !important;
+  border: 1px solid var(--border-subtle) !important;
+  background: var(--bg-secondary);
+  box-shadow: none;
+  overflow: hidden;
+}
+
+[data-code-block-header] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 0.7rem 1rem;
+  background: transparent;
+}
+
+[data-code-block-container] [data-code-block-header] > span {
+  margin-left: 0 !important;
+}
+
+.code-block-filename {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.03em;
+  padding: 0.32rem 0.65rem;
+  border-radius: 8px;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+}
+
+.code-block-filename::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4f83ff;
+  box-shadow: 0 0 6px rgba(79, 131, 255, 0.45);
+}
+
+.code-block-language {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 3rem;
+  padding: 0.28rem 0.46rem;
+  border-radius: 8px;
+  font-size: 11px !important;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+  text-transform: uppercase !important;
+}
+
+.code-block-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border-subtle);
+  margin-top: 0.1rem;
+  flex-basis: 100%;
+}
+
+[data-code-block-container] [data-code-block] {
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+[data-code-block-container] [data-code-block] code {
+  background: transparent !important;
+}
+
+[data-code-block-container] pre {
+  margin: 0 !important;
+  border-radius: 0 !important;
+  padding: 1.2rem 1.15rem !important;
+  background: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  font-size: 13px !important;
+  line-height: 1.6 !important;
+}
+
+[data-code-block-header] button {
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  background: transparent;
+  padding: 0.28rem 0.46rem;
+  transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+[data-code-block-header] button:hover {
+  border-color: #4f83ff;
+  background: rgba(79, 131, 255, 0.14);
+  color: #dfe7ff;
+}
+
+[data-code-block-header] button:active {
+  background: rgba(79, 131, 255, 0.22);
+}
+
