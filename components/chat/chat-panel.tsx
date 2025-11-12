@@ -9,10 +9,10 @@ import {
   useState,
 } from "react";
 import {
-  SearchIcon,
-  ScrollIcon,
-  FlaskConicalIcon,
-  ClapperboardIcon,
+  RocketIcon,
+  WavesIcon,
+  CassetteTapeIcon,
+  MoonStarIcon,
 } from "lucide-react";
 import Image from "next/image";
 import type { StickToBottomContext } from "use-stick-to-bottom";
@@ -59,28 +59,28 @@ import {
 
 const SUGGESTION_PROMPTS: SuggestionPrompt[] = [
   {
-    icon: SearchIcon,
-    label: "Quick Scan",
-    prompt: "Summarize today's key breakthrough in quantum sensors in three bullets.",
-    accent: "bg-sky-500/10 text-sky-200 border border-sky-500/20",
+    icon: RocketIcon,
+    label: "Moonshot Map",
+    prompt: "Sketch a week-long roadmap turning a lab-born biosensor into a community pilot.",
+    accent: "bg-indigo-500/10 text-indigo-200 border border-indigo-500/20",
   },
   {
-    icon: ScrollIcon,
-    label: "Field Notes",
-    prompt: "Highlight two historical insights that still shape modern lab culture.",
-    accent: "bg-amber-500/10 text-amber-200 border border-amber-500/20",
+    icon: WavesIcon,
+    label: "Signal Weave",
+    prompt: "Dream up a salon where climate datasets become tactile sound art collaborations.",
+    accent: "bg-cyan-500/10 text-cyan-200 border border-cyan-500/20",
   },
   {
-    icon: FlaskConicalIcon,
-    label: "Data Angle",
-    prompt: "Suggest metrics to judge emerging open-source LLM benchmarks.",
-    accent: "bg-emerald-500/10 text-emerald-200 border border-emerald-500/20",
+    icon: CassetteTapeIcon,
+    label: "Retro Forecast",
+    prompt: "Write a faux 1987 radio spot that anticipates today's brain-computer interface scene.",
+    accent: "bg-rose-500/10 text-rose-200 border border-rose-500/20",
   },
   {
-    icon: ClapperboardIcon,
-    label: "Pitch Deck",
-    prompt: "Draft a short podcast teaser on the future of AI ethics.",
-    accent: "bg-fuchsia-500/10 text-fuchsia-200 border border-fuchsia-500/20",
+    icon: MoonStarIcon,
+    label: "Starlit Sync",
+    prompt: "Invent a nightly ritual that keeps global research teams aligned without another meeting.",
+    accent: "bg-violet-500/10 text-violet-200 border border-violet-500/20",
   },
 ];
 
